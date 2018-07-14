@@ -9,6 +9,12 @@ console.log('conecting...')
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
+app.get('/chat', (req, res) => {
+    res.sendFile(__dirname + '/chat.html');
+});
+app.get('/video', (req, res) => {
+    res.sendFile(__dirname + '/video.html');
+});
 
 io.on('connection', (socket) => {
     senseLeds.showMessage(':)', 0.2, [100, 100, 100]);
