@@ -1,17 +1,7 @@
-# SenseSnake
+# VideoChatSenseSnake
 
-Snake for the raspberrypi sense-hat on resin!
+Video, Chat and Snake for the raspberrypi sense-hat on resin!
 
-## Configuration
-
-Set the following env-vars to control the game:
-
-### SNAKE_TICK_DELAY
-Set this to change the delay between frames, smaller delay, faster gameplay
-Default: 400 ms
-Recommended: 400 for slower gameplay for newer players, 200 for a faster start for those who have played a bit more
-
-### SNAKE_TICK_MODIFIER
-Set this value to change how much the delay reduces by when eating a food
-Default: 10ms
-Recommended: 10ms with a higher tick delay (~400ms), 5ms with a lower tick delay (~200ms)
+## Usage
+Clone the repo and push it to your resin.io account. Load it to your Raspberry Pi with a sense-hat.
+Activate the public address and go to that url. Then select video, chat or snake.  
