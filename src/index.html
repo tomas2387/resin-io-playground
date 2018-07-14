@@ -13,6 +13,9 @@
         <input id="m" autocomplete="off" />
         <button>Send</button>
     </form>
+
+	<video id="v" width="300" height="300" autoplay></video>
+	<canvas id="c" style="display:none;" width="8" height="8"></canvas>
 </body>
 <script src="/socket.io/socket.io.js"></script>
 <script>
@@ -31,5 +34,51 @@
     })
 
 </script>
+<script>
+          (function() {
+    'use strict';
+    var video = document.querySelector('video')
+      , canvas;
 
+    /**
+     *  generates a still frame image from the stream in the <video>
+     *  appends the image to the <body>
+     */
+    function takeSnapshot() {
+      var img = document.querySelector('img') || document.createElement('img');
+      var context;
+      var width = video.offsetWidth
+        , height = video.offsetHeight;
+
+      canvas = canvas || document.createElement('canvas');
+      canvas.width = 8;
+      canvas.height = 8;
+
+      context = canvas.getContext('2d');
+      context.drawImage(video, 0, 0, 8, 8);
+
+        var blob;
+      img.src = blob = canvas.toDataURL('image/png');
+      document.body.appendChild(img);
+
+      socket.emit('image', blob)
+    }
+
+    // use MediaDevices API
+    // docs: https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
+    if (navigator.mediaDevices) {
+      // access the web cam
+      navigator.mediaDevices.getUserMedia({video: true})
+      // permission granted:
+        .then(function(stream) {
+          video.srcObject = stream;
+          video.addEventListener('click', takeSnapshot);
+        })
+        // permission denied:
+        .catch(function(error) {
+          document.body.textContent = 'Could not access the camera. Error: ' + error.name;
+        });
+    }
+  })();
+    </script>
 </html>

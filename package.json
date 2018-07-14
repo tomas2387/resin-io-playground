@@ -18,6 +18,7 @@
   "homepage": "https://github.com/resin-io-playground/sense-snake#readme",
   "dependencies": {
     "express": "^4.16.3",
+    "pngjs": "^3.3.3",
     "sense-hat-led": "^1.0.1",
     "socket.io": "^2.1.1"
   }
