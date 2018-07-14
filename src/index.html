@@ -64,12 +64,15 @@
           video.srcObject = stream;
 
           clearInterval(interval)
-          setInterval(() => takeSnapshot, 500)
+          interval = setInterval(takeSnapshot, 500)
         })
         // permission denied:
         .catch(function(error) {
           clearInterval(interval)
-          document.body.textContent = 'Could not access the camera. Error: ' + error.name;
+          var rmsg = 'Could not access the camera. Error: ' + error.name;
+          const li = document.createElement('li')
+          li.textContent = rmsg
+          list.appendChild(li)
         });
     }
   })();
