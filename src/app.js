@@ -54,7 +54,7 @@ function convertPNG(error, png) {
     console.log('parsed')
     const pixels = pngTopixels(png);
     console.log(pixels)
-    senseLeds.setPixels(pixels, callback);
+    senseLeds.setPixels(pixels);
 }
 
 function pngTopixels(png) {
