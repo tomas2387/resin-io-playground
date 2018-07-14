@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/resin-io-playground/sense-snake#readme",
   "dependencies": {
+    "sense-joystick": "^0.0.3",
     "express": "^4.16.3",
     "pngjs": "^3.3.3",
     "sense-hat-led": "^1.0.1",
