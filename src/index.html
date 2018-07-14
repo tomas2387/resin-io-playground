@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Websocket server raspberry pi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <ul id="messages"></ul>
+    <form action="">
+        <input id="m" autocomplete="off" />
+        <button>Send</button>
+    </form>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io();
+    document.querySelector('form')
+    .addEventListener('submit', (e) => {
+        e.preventDefault();
+        socket.emit('chat message', document.querySelector('#m').value);
+    })
+
+    const list = document.querySelector('#messages')
+    socket.on('chat message', (rmsg) => {
+        const li = document.createElement('li')
+        li.textContent = rmsg
+        list.appendChild(li)
+    })
+
+</script>
+
+</html>
