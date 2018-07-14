@@ -2,6 +2,7 @@ const senseLeds = require('sense-hat-led');
 const app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+const PNG = require('pngjs').PNG
 
 console.log('conecting...')
 
