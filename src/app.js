@@ -10,11 +10,11 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-	senseLeds.showMessage(':)', [255, 0, 0], () => {});
+	senseLeds.showMessage(':)', [255, 0, 0], 0.3);
 
 	socket.on('chat message', (msg) => {
 		console.log('chat message received', msg)
-		senseLeds.showMessage('msg', [255, 0, 0], () => {});	
+		senseLeds.showMessage(msg, [133, 133, 133], 0.3);	
         io.emit('chat message', msg);
     })
 });
