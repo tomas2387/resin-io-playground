@@ -3,17 +3,25 @@ const app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 const PNG = require('pngjs').PNG
+const snakeGame = require('./snake')
 
 console.log('conecting...')
 
 app.get('/', (req, res) => {
+    snakeGame.stopGame()
     res.sendFile(__dirname + '/index.html');
 });
 app.get('/chat', (req, res) => {
+    snakeGame.stopGame()
     res.sendFile(__dirname + '/chat.html');
 });
 app.get('/video', (req, res) => {
+    snakeGame.stopGame()
     res.sendFile(__dirname + '/video.html');
+});
+app.get('/snake', (req, res) => {
+    snakeGame.startGame()
+    res.sendFile(__dirname + '/snake.html');
 });
 
 io.on('connection', (socket) => {
