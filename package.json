@@ -17,8 +17,7 @@
   },
   "homepage": "https://github.com/resin-io-playground/sense-snake#readme",
   "dependencies": {
-    "lodash": "^4.17.4",
     "sense-hat-led": "^1.0.1",
-    "sense-joystick": "0.0.2"
+    "socket.io-client": "^2.1.1"
   }
 }
