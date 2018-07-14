@@ -1,80 +1,13 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Websocket server raspberry pi</title>
+    <title>Video or Chat</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <ul id="messages"></ul>
-    <form action="">
-        <input id="m" autocomplete="off" />
-        <button>Send</button>
-    </form>
-
-	<video id="v" width="300" height="300" autoplay></video>
-	<canvas id="c" style="display:none;" width="8" height="8"></canvas>
+    <a href="chat.html"></a>
+    <a href="video.html"></a>
 </body>
-<script src="/socket.io/socket.io.js"></script>
-<script>
-    var socket = io();
-    document.querySelector('form')
-    .addEventListener('submit', (e) => {
-        e.preventDefault();
-        socket.emit('chat message', document.querySelector('#m').value);
-    })
-
-    const list = document.querySelector('#messages')
-    socket.on('chat message', (rmsg) => {
-        const li = document.createElement('li')
-        li.textContent = rmsg
-        list.appendChild(li)
-    })
-</script>
-<script>
-(function() {
-    'use strict';
-    var video = document.querySelector('video')
-      , canvas;
-
-    /**
-     *  generates a still frame image from the stream in the <video>
-     *  appends the image to the <body>
-     */
-    function takeSnapshot() {
-      canvas = canvas || document.createElement('canvas');
-      canvas.width = 8;
-      canvas.height = 8;
-
-      var context = canvas.getContext('2d');
-      context.drawImage(video, 0, 0, 8, 8);
-      socket.emit('image', canvas.toDataURL('image/png'))
-    }
-
-    let interval;
-    // use MediaDevices API
-    // docs: https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
-    if (navigator.mediaDevices) {
-      // access the web cam
-      navigator.mediaDevices.getUserMedia({video: true})
-      // permission granted:
-        .then(function(stream) {
-          video.srcObject = stream;
-
-          clearInterval(interval)
-          interval = setInterval(takeSnapshot, 500)
-        })
-        // permission denied:
-        .catch(function(error) {
-          clearInterval(interval)
-          var rmsg = 'Could not access the camera. Error: ' + error.name;
-          const li = document.createElement('li')
-          li.textContent = rmsg
-          list.appendChild(li)
-        });
-    }
-  })();
-    </script>
 </html>

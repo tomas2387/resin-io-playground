@@ -51,9 +51,7 @@ function convertPNG(error, png) {
         console.error(`Could not parse PNG ${error.message}`);
         return;
     }
-    console.log('parsed')
     const pixels = pngTopixels(png);
-    console.log(pixels)
     senseLeds.setPixels(pixels);
 }
 
